@@ -1,27 +1,16 @@
-.example-wrapper {
-  max-width: 580px;
-  margin: 0 auto;
-  padding-left: 10px;
-  padding-right: 10px;
+html,
+body,
+.app-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.example-list {
-  margin-top: 8%;
+*:focus {
+  outline: 0;
 }
 
-.example-close-button {
-  cursor: pointer;
-  float: right;
-}
-
-.example-form {
-  margin-top: 7%;
-}
-
-.example-form-control {
-  min-width: 83%;
-}
-
-.example-button {
-  float: right;
+button::-moz-focus-inner {
+  border: 0;
 }
