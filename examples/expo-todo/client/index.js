@@ -7,7 +7,7 @@ import App from './containers/App'
 
 RX.App.initialize(true, true)
 RX.UserInterface.setMainView(
-  <Provider store={createStore()}>
+  <Provider store={createStore({})}>
     <App />
   </Provider>
 )

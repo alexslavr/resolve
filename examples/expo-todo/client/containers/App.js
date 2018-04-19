@@ -40,6 +40,12 @@ export class App extends Component {
     this.props.removeItem(aggregateId, { id })
   }
 
+  sortTodos = todos => {
+    const arrTodos = Object.keys(todos).map(id => ({ id, ...todos[id] }))
+    arrTodos.sort((a, b) => a.checked - b.checked)
+    return arrTodos
+  }
+
   render() {
     const { todos } = this.props
     return (
@@ -47,16 +53,19 @@ export class App extends Component {
         <Text style={styles.title}>TODO List</Text>
         <View style={styles.list}>
           {todos &&
-            Object.keys(todos).map(todo => (
+            this.sortTodos(todos).map(todo => (
               <Todo
-                key={todo}
-                id={todo}
-                text={todos[todo].text}
+                key={todo.id}
+                todo={todo}
                 onToggle={this.toggleTodo}
                 onRemove={this.removeTodo}
               />
             ))}
-          <TextInput placeholder="New TODO" onSubmit={this.createTodo} />
+          <TextInput
+            key="add-todo"
+            placeholder="New TODO"
+            onSubmit={this.createTodo}
+          />
         </View>
       </Page>
     )

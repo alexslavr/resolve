@@ -7,7 +7,8 @@ const styles = {
     borderColor: '#333333',
     borderWidth: 1,
     paddingHorizontal: 20,
-    paddingVertical: 10
+    paddingVertical: 10,
+    marginVertical: 10
   })
 }
 

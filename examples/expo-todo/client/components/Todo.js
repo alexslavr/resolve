@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Button, Text, Styles } from 'reactxp'
+import { Switch } from './switch/Switch'
 
 const styles = {
   todo: Styles.createViewStyle({
@@ -10,12 +11,23 @@ const styles = {
     paddingVertical: 10
   }),
 
+  item: Styles.createViewStyle({
+    flexDirection: 'row',
+    alignItems: 'center'
+  }),
+
   text: Styles.createTextStyle({
-    fontSize: 16
+    fontSize: 16,
+    marginLeft: 10,
+    marginRight: 20
+  }),
+
+  checked: Styles.createTextStyle({
+    color: '#828282',
+    textDecorationLine: 'line-through'
   }),
 
   button: Styles.createViewStyle({
-    marginLeft: 10,
     height: 30,
     width: 30,
     alignItems: 'center',
@@ -31,20 +43,31 @@ const styles = {
 
 export class Todo extends Component {
   onToggle = () => {
-    const { id, onToggle } = this.props
+    const {
+      todo: { id },
+      onToggle
+    } = this.props
     onToggle(id)
   }
 
   onRemove = () => {
-    const { id, onRemove } = this.props
+    const {
+      todo: { id },
+      onRemove
+    } = this.props
     onRemove(id)
   }
 
   render() {
-    const { text } = this.props
+    const {
+      todo: { text, checked }
+    } = this.props
     return (
       <View style={styles.todo}>
-        <Text style={styles.text}>{text}</Text>
+        <View style={styles.item}>
+          <Switch value={checked} onValueChange={this.onToggle} />
+          <Text style={[styles.text, checked && styles.checked]}>{text}</Text>
+        </View>
         <Button style={styles.button} onPress={this.onRemove}>
           <Text style={styles.close}>{String.fromCharCode(0x00d7)}</Text>
         </Button>
